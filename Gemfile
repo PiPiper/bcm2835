@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in pi_piper-bcm2835.gemspec
+group :development do
+  gem 'pry'
+end
+
 gemspec
