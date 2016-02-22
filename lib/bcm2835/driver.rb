@@ -7,7 +7,7 @@ module Bcm2835
   class Driver
     extend FFI::Library
 
-    ffi_lib File.dirname(__FILE__) + '/../../libbcm2835.so'
+    ffi_lib File.dirname(__FILE__) + '/../../bin/libbcm2835.so'
     @pins = []
 
     SPI_MODE0 = 0
