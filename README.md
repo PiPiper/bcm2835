@@ -2,12 +2,14 @@
 
 The bcm2835 driver library for PiPiper for use with the Raspberry Pi and the PiPiper library.
 
+Based on Mike Mc Cauley C library. [http://www.airspayce.com/mikem/bcm2835/]
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bcm2835'
+gem 'pi_piper-bcm2835'
 ```
 
 And then execute:
@@ -16,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install bcm2835
+    $ gem install pi_piper-bcm2835
 
 ## Usage
 
@@ -30,11 +32,11 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bcm2835. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/pipiper/bcm2835. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [BSD License](http://opensource.org/licenses/BSD).
 
 
