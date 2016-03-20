@@ -1,5 +1,7 @@
+require 'ffi'
 require "pi_piper/bcm2835/version"
+require "pi_piper/bcm2835/bcm2835"
 
 module PiPiper
-  autoload PiPiper::Bcm2835, "pi_piper/bcm2835/bcm2835"
+  self.driver= PiPiper::Bcm2835
 end
