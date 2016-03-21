@@ -9,8 +9,7 @@ module PiPiper
       extend PiPiper::Bcm2835::Pin
       extend FFI::Library
 
-      ffi_lib File.expand_path('../../../bin/libbcm2835/so', __FILE__)
-      @pins = []
+      ffi_lib File.expand_path('../../../../bin/libbcm2835.so', __FILE__)
 
       SPI_MODE0 = 0
       SPI_MODE1 = 1
