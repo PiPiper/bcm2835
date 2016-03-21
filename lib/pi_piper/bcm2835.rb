@@ -1,5 +1,15 @@
-require "pi_piper/bcm2835/version"
+require 'pi_piper/bcm2835/version'
+require 'pi_piper/bcm2835/pin'
+require 'pi_piper/bcm2835/spi'
+require 'pi_piper/bcm2835/i2c'
+require 'pi_piper/bcm2835/driver'
 
 module PiPiper
-  autoload PiPiper::Bcm2835, "pi_piper/bcm2835/bcm2835"
+  module Bcm2835
+    class << self
+      def driver
+        @driver ||= PiPiper::Bcm2835::Driver.new
+      end
+    end
+  end
 end
