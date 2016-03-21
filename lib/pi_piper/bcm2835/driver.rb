@@ -6,6 +6,7 @@ module PiPiper
     # The Bcm2835 module is not intended to be directly called.
     # It serves as an FFI library for PiPiper::SPI and PiPiper::I2C
     class Driver
+      extend PiPiper::Bcm2835::Pin
       extend FFI::Library
 
       ffi_lib File.expand_path('../../../bin/libbcm2835/so', __FILE__)
@@ -33,49 +34,12 @@ module PiPiper
 
       # pin support...
       attach_function :pin_set_pud, :bcm2835_gpio_set_pud, [:uint8, :uint8], :void
-      
-      def self.pin_input(pin)
-        export(pin)
-        pin_direction(pin, 'in')
-      end
-
-      def self.pin_set(pin, value)
-        File.write("/sys/class/gpio/gpio#{pin}/value", value)
-      end
-
-      def self.pin_output(pin)
-        export(pin)
-        pin_direction(pin, 'out')
-      end
-
-      def self.pin_read(pin)
-        File.read("/sys/class/gpio/gpio#{pin}/value").to_i
-      end
 
       # PWM support...
       attach_function :pwm_clock,     :bcm2835_pwm_set_clock,  [:uint32], :void
       attach_function :pwm_mode,      :bcm2835_pwm_set_mode,   [:uint8, :uint8, :uint8], :void
       attach_function :pwm_range,     :bcm2835_pwm_set_range,  [:uint8, :uint32], :void
       attach_function :pwm_data,      :bcm2835_pwm_set_data,   [:uint8, :uint32], :void
-
-      def self.pin_direction(pin, direction)
-        File.write("/sys/class/gpio/gpio#{pin}/direction", direction)
-      end
-
-      # Exports pin and subsequently locks it from outside access
-      def self.export(pin)
-        File.write('/sys/class/gpio/export', pin)
-        @pins << pin unless @pins.include?(pin)
-      end
-
-      def self.release_pin(pin)
-        File.write('/sys/class/gpio/unexport', pin)
-        @pins.delete(pin)
-      end
-
-      def self.release_pins
-        @pins.dup.each { |pin| release_pin(pin) }
-      end
 
       # NOTE to use: chmod 666 /dev/spidev0.0
       def self.spidev_out(array)

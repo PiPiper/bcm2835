@@ -1,4 +1,5 @@
 require 'pi_piper/bcm2835/version'
+require 'pi_piper/bcm2835/pin'
 require 'pi_piper/bcm2835/driver'
 
 module PiPiper
