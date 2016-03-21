@@ -1,16 +1,17 @@
 require 'ffi'
+require 'pry'
 
 module PiPiper
   module Bcm2835
     # The Bcm2835 module is not intended to be directly called.
     # It serves as an FFI library for PiPiper::SPI and PiPiper::I2C
     class Driver
-      extend PiPiper::Bcm2835::Pin
-      extend PiPiper::Bcm2835::SPI
-      extend PiPiper::Bcm2835::I2C
-      extend FFI::Library
+      include PiPiper::Bcm2835::Pin
+      include PiPiper::Bcm2835::SPI
+      include PiPiper::Bcm2835::I2C
+      include FFI::Library
 
-      def instantiate
+      def initialize
         ffi_lib File.expand_path('../../../../bin/libbcm2835.so', __FILE__)
         setup_gpio
         setup_pwm
