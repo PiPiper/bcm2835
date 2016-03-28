@@ -1,14 +1,10 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "pi_piper/bcm2835"
+require 'bundler/setup'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+require 'pi_piper'
+require 'pi_piper/bcm2835'
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
-
-require "irb"
+require 'irb'
+require 'irb/completion'
 IRB.start

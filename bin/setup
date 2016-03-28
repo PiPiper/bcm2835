@@ -2,6 +2,25 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-bundle install
+# bundle install
 
 # Do any other automated setup that you need to do here
+
+PWD_DIR=`pwd`
+TMP_DIR=`mktemp -d`
+
+pushd $TMP_DIR
+  wget -r -np -nd -l 1 -A tar.gz http://www.airspayce.com/mikem/bcm2835/
+  tar zxvf *.tar.gz
+
+  pushd bcm2835-*
+    ./configure
+    make
+    sudo make check
+    cc -shared src/bcm2835.o -o libbcm2835.so
+    cp libbcm2835.so "$PWD_DIR"/lib/libbcm2835.so
+  # sudo make install
+  popd
+popd
+
+rm -rf $TMP_DIR

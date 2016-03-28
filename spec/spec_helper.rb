@@ -1,3 +1,4 @@
+require 'pi_piper'
 require 'simplecov'
 SimpleCov.start
 
